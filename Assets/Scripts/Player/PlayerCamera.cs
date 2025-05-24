@@ -52,6 +52,14 @@ public class PlayerCamera : MonoBehaviour
         targetRotation = Quaternion.Slerp(transform.rotation, targetRotation, smoothTime);
         transform.rotation = targetRotation;
 
+        if (inputManager.quickTurnInput)
+        {
+            inputManager.quickTurnInput = false;
+            lookAmountVertical = lookAmountVertical + 180;
+            cameraRotation.y = cameraRotation.y + 180;
+            transform.rotation = targetRotation;
+        }
+
         cameraRotation = Vector2.zero;
         cameraRotation.x = lookAmounHorizontal;
         targetRotation = Quaternion.Euler(cameraRotation);

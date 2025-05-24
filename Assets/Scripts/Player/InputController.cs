@@ -44,6 +44,24 @@ public partial class @InputController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Run"",
+                    ""type"": ""Button"",
+                    ""id"": ""0fbc92a6-8388-40cc-8c2f-9517173b5b7e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Quickturn"",
+                    ""type"": ""Button"",
+                    ""id"": ""6d72fae3-554e-4f62-982b-bc93e703fe80"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +130,28 @@ public partial class @InputController: IInputActionCollection2, IDisposable
                     ""action"": ""Camera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5bb3211e-6e98-4035-b440-46afb7a385be"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a46f086-e618-4895-a7ab-a787d25c821f"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quickturn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +162,8 @@ public partial class @InputController: IInputActionCollection2, IDisposable
         m_PlayerMove = asset.FindActionMap("PlayerMove", throwIfNotFound: true);
         m_PlayerMove_Move = m_PlayerMove.FindAction("Move", throwIfNotFound: true);
         m_PlayerMove_Camera = m_PlayerMove.FindAction("Camera", throwIfNotFound: true);
+        m_PlayerMove_Run = m_PlayerMove.FindAction("Run", throwIfNotFound: true);
+        m_PlayerMove_Quickturn = m_PlayerMove.FindAction("Quickturn", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,12 +227,16 @@ public partial class @InputController: IInputActionCollection2, IDisposable
     private List<IPlayerMoveActions> m_PlayerMoveActionsCallbackInterfaces = new List<IPlayerMoveActions>();
     private readonly InputAction m_PlayerMove_Move;
     private readonly InputAction m_PlayerMove_Camera;
+    private readonly InputAction m_PlayerMove_Run;
+    private readonly InputAction m_PlayerMove_Quickturn;
     public struct PlayerMoveActions
     {
         private @InputController m_Wrapper;
         public PlayerMoveActions(@InputController wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_PlayerMove_Move;
         public InputAction @Camera => m_Wrapper.m_PlayerMove_Camera;
+        public InputAction @Run => m_Wrapper.m_PlayerMove_Run;
+        public InputAction @Quickturn => m_Wrapper.m_PlayerMove_Quickturn;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMove; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -206,6 +252,12 @@ public partial class @InputController: IInputActionCollection2, IDisposable
             @Camera.started += instance.OnCamera;
             @Camera.performed += instance.OnCamera;
             @Camera.canceled += instance.OnCamera;
+            @Run.started += instance.OnRun;
+            @Run.performed += instance.OnRun;
+            @Run.canceled += instance.OnRun;
+            @Quickturn.started += instance.OnQuickturn;
+            @Quickturn.performed += instance.OnQuickturn;
+            @Quickturn.canceled += instance.OnQuickturn;
         }
 
         private void UnregisterCallbacks(IPlayerMoveActions instance)
@@ -216,6 +268,12 @@ public partial class @InputController: IInputActionCollection2, IDisposable
             @Camera.started -= instance.OnCamera;
             @Camera.performed -= instance.OnCamera;
             @Camera.canceled -= instance.OnCamera;
+            @Run.started -= instance.OnRun;
+            @Run.performed -= instance.OnRun;
+            @Run.canceled -= instance.OnRun;
+            @Quickturn.started -= instance.OnQuickturn;
+            @Quickturn.performed -= instance.OnQuickturn;
+            @Quickturn.canceled -= instance.OnQuickturn;
         }
 
         public void RemoveCallbacks(IPlayerMoveActions instance)
@@ -237,5 +295,7 @@ public partial class @InputController: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnCamera(InputAction.CallbackContext context);
+        void OnRun(InputAction.CallbackContext context);
+        void OnQuickturn(InputAction.CallbackContext context);
     }
 }

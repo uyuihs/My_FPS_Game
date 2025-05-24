@@ -7,6 +7,10 @@ public class PlayerLocomotionManager : MonoBehaviour
 {
     InputManager inputManager;
 
+    public Rigidbody playerRigidBody;
+
+    PlayerManager playerManager;
+
     [Header("Camera Transform")]
     public Transform cameraHolderTransform;
 
@@ -21,6 +25,8 @@ public class PlayerLocomotionManager : MonoBehaviour
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();
+        playerRigidBody = GetComponent<Rigidbody>();
+        playerManager = GetComponent<PlayerManager>();
     }
 
     public void HandleAllLocomotions()
@@ -34,6 +40,13 @@ public class PlayerLocomotionManager : MonoBehaviour
         playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         if (inputManager.horizontalCameraInput != 0 || inputManager.verticalCameraInput != 0)
         {
+            transform.rotation = playerRotation;
+        }
+
+        if (playerManager.isPerformingQuickTurn)
+        {
+            Debug.Log("QuickTurn");
+            playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
             transform.rotation = playerRotation;
         }
     }
