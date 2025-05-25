@@ -115,6 +115,9 @@ MonoBehaviour:
   weaponBulletCaseFx: {fileID: 1647599476371734, guid: d1d2a96a9fbbc6d4ebc40a558b89e570, type: 3}
   weaponMuzzleFlashTransform: {fileID: 8361484959375001162}
   weaponBulletCaseTransform: {fileID: 255121625914661662}
+  shootableLayers:
+    serializedVersion: 2
+    m_Bits: 16257
 --- !u!1 &2422635152137539161
 GameObject:
   m_ObjectHideFlags: 0

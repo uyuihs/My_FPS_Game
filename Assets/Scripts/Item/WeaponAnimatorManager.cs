@@ -13,6 +13,9 @@ public class WeaponAnimatorManager : MonoBehaviour
     public Transform weaponMuzzleFlashTransform;
     public Transform weaponBulletCaseTransform;
 
+    [Header("Shoot DetectLayer")]
+    public LayerMask shootableLayers;
+
     private void Awake()
     {
         weaponAnimator = GetComponentInChildren<Animator>();
@@ -34,9 +37,9 @@ public class WeaponAnimatorManager : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(playerCamera.cameraObject.transform.position, playerCamera.transform.forward, out hit))
+        if (Physics.Raycast(playerCamera.cameraObject.transform.position, playerCamera.transform.forward, out hit, shootableLayers))
         {
-            Debug.Log(hit.transform.name);
+            Debug.Log(hit.collider.gameObject.layer);
         }
     }
 }

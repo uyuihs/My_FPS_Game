@@ -10,4 +10,7 @@ public class WeaponItem : Item
 
     public bool needIK = false;
 
+    public float bulletRange = 100f;
+
+
 }
