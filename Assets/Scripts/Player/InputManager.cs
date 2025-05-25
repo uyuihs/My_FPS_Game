@@ -24,6 +24,7 @@ public class InputManager : MonoBehaviour
     public bool runInput;
     public bool quickTurnInput;
     public bool aimingInput;
+    public bool shootInput;
 
     private void Awake()
     {
@@ -45,7 +46,9 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerMove.Run.canceled += ctx => runInput = false;
             playerControls.PlayerMove.Quickturn.performed += ctx => quickTurnInput = true;
             playerControls.PlayerActions.Aiming.performed += ctx => aimingInput = true;
-            playerControls.PlayerActions.Aiming.canceled += ctx => aimingInput = false; 
+            playerControls.PlayerActions.Aiming.canceled += ctx => aimingInput = false;
+            playerControls.PlayerActions.Shooting.performed += i => shootInput = true;
+            playerControls.PlayerActions.Shooting.canceled += i => shootInput = false;
         }
 
         playerControls.Enable();
@@ -62,6 +65,7 @@ public class InputManager : MonoBehaviour
         HandleMovementInput();
         HandleQuickTurnInput();
         HandleAimingInput();
+        HandleShootingInput();
     }
 
     private void HandleAimingInput()
@@ -119,6 +123,15 @@ public class InputManager : MonoBehaviour
             animator.SetBool("isPerformingQuickTurn", true);
             animationManager.PlayAnimationWithoutRootMotion("QuickTurn", true);
         }
+    }
+
+    private void HandleShootingInput() {
+        if (shootInput && aimingInput)
+        {
+            shootInput = false;
+            Debug.Log("Shoot");
+            playerManager.UseCurrentWeapon();
+        }        
     }
 
 }

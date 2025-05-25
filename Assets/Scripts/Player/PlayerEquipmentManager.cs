@@ -8,6 +8,7 @@ public class PlayerEquipmentManager : MonoBehaviour
     WeaponLoadSlot weaponLoadSlot;
     [Header("Current Equipment")]
     public WeaponItem weapon;
+    public WeaponAnimatorManager weaponAnimatorManager; 
     RightHandTargetIK rightIK;
     LeftHandTargetIK leftIK;
     //public WeaponItem subweapon;
@@ -39,6 +40,7 @@ public class PlayerEquipmentManager : MonoBehaviour
         {
             LoadIK();
         }
+        weaponAnimatorManager = weaponLoadSlot.currentWeaponModel.GetComponentInChildren<WeaponAnimatorManager>();
     }
 
     private void LoadIK()

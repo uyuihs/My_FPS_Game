@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     InputManager inputManager;
     Animator animator;
     PlayerLocomotionManager playerLocomotionManager;
+    PlayerEquipmentManager playerEquipmentManager;
 
     [Header("Player Flags")]
     public bool isPerformingActions;
@@ -21,6 +22,7 @@ public class PlayerManager : MonoBehaviour
         inputManager = GetComponent<InputManager>();
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         animator = GetComponent<Animator>();
+        playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
     }
 
     private void Update()
@@ -42,6 +44,11 @@ public class PlayerManager : MonoBehaviour
     {
         playerCamera.HandleAllCameraMovement();
 
+    }
+
+    public void  UseCurrentWeapon()
+    {
+        playerEquipmentManager.weaponAnimatorManager.ShootWeapon(playerCamera);
     }
 
  
