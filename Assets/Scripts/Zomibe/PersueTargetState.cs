@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PersueTargetState : State
 {
-    public override State StateTick()
+    public override State StateTick(ZombieManager zombie)
     {
         Debug.Log("PersueTargetState");
         return this;

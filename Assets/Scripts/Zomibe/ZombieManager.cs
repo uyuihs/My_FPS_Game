@@ -6,8 +6,13 @@ public class ZombieManager : MonoBehaviour
 {
 
     public IdleState startingState;
+
+    [Header("Current State")]
     [SerializeField] private State currentState;
 
+    [Header("Current Target")]
+    public PlayerManager currentTarget;
+    
     private void Awake()
     {
         currentState = startingState;
@@ -19,8 +24,8 @@ public class ZombieManager : MonoBehaviour
         State nextState;
         if (currentState != null)
         {
-            nextState = currentState.StateTick();
-            currentState = currentState.StateTick() == null ? currentState : nextState;
+            nextState = currentState.StateTick(this);
+            currentState = currentState.StateTick(this) == null ? currentState : nextState;
         }
     }
 
