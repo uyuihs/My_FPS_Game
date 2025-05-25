@@ -15,6 +15,7 @@ public class PlayerCamera : MonoBehaviour
     [Header("Camera Follow Target")]
     public GameObject player;
     public Transform aimedCameraPosition;//瞄准的相机跟随位置
+    public Transform aimedTarget;//瞄准点
 
     Vector3 targetPosition;
     Vector3 cameraFollowVelocity = Vector3.zero;
@@ -27,11 +28,13 @@ public class PlayerCamera : MonoBehaviour
     float lookAmounHorizontal;
     float maximumPivoyAngle = 15f;
     float minimumPivotAngle = -15f;
+    PlayerUIManager playerUIManager;
 
     private void Awake()
     {
         inputManager = player.GetComponent<InputManager>();
         playerManager = player.GetComponent<PlayerManager>();
+        playerUIManager = FindObjectOfType<PlayerUIManager>();
     }
 
     public void HandleAllCameraMovement()
