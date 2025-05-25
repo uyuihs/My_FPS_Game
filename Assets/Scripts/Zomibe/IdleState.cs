@@ -8,13 +8,14 @@ public class IdleState : State
     PersueTargetState persueTargetState;
 
     [SerializeField] bool hasTargetState;
-
+    
     [Header("Decetion")]
     [SerializeField] float detectionRadius = 30f;//检测的球坐标半径
     [SerializeField] float minDecetionRadiusAngle = -180f;//僵尸最正面-180度
     [SerializeField] float maxDecetionRadiusAngle = 100f;//僵尸最左、右侧均为100
     [SerializeField] LayerMask detectionLayer;
     [SerializeField] LayerMask detectionEnvLayer;
+    float characterHightLevel = 1.6f;//玩家视线高度，模拟视线
 
 
     private void Awake()
@@ -60,9 +61,8 @@ public class IdleState : State
                 {
                     Debug.Log("通过僵尸范围检测");
                     RaycastHit hit;
-                    float characterHight = 2f;
-                    Vector3 playerStartPoint = new Vector3(player.transform.position.x, characterHight, player.transform.position.z);
-                    Vector3 zombieStartPoint = new Vector3(transform.position.x, characterHight, transform.position.z);
+                    Vector3 playerStartPoint = new Vector3(player.transform.position.x, characterHightLevel, player.transform.position.z);
+                    Vector3 zombieStartPoint = new Vector3(transform.position.x, characterHightLevel, transform.position.z);
 
                     //射线检测，检测是否僵尸和玩家之间有的直线有障碍物
                     if (Physics.Linecast(playerStartPoint, zombieStartPoint, out hit, detectionEnvLayer))
@@ -77,7 +77,7 @@ public class IdleState : State
                         zombieManager.currentTarget = player;
                     }
                 }
-                // break;
+                if (zombieManager.currentTarget != null) { break; }
             }
         }
 
