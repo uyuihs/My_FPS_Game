@@ -9,9 +9,14 @@ public class PlayerAnimationManager : MonoBehaviour
     PlayerLocomotionManager playerLocomotionManager;
     PlayerManager playerManager;
     RigBuilder rigBuilder;
+
+    [Header("Hand IK Contstrants")]
     public TwoBoneIKConstraint rightHandIK;
     public TwoBoneIKConstraint leftHandIK;
-    
+
+    [Header("Aiming Constrants")]
+    public Rig aimRig;
+
     private int xMovHash;
     private int zMovHash;
     private int isPerformingActionsHash;
@@ -63,6 +68,20 @@ public class PlayerAnimationManager : MonoBehaviour
         leftHandIK.data.target = leftIK.transform;
         rigBuilder.Build();
     }
+
+    //当且仅当角色瞄准时，才会开启瞄准ik
+    public void UpdateAimConstraints()
+    {
+        if (playerManager.isAiming)
+        {
+            aimRig.weight = 1;
+        }
+        else
+        {
+            aimRig.weight = 0;
+        }
+    }
+
     private void OnAnimatorMove()
     {
         if (playerManager.disableRootmotion) { return; }

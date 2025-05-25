@@ -132,6 +132,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "PlayerActions",
+            "id": "5557f7e2-3e80-4eed-bc93-dc9dda8f0ac7",
+            "actions": [
+                {
+                    "name": "Aiming",
+                    "type": "Button",
+                    "id": "8d0e76a3-e639-4e7f-8061-a2e5aa31c8bf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ccf80f86-e653-4d0a-a51e-05e2aa1582e4",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aiming",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

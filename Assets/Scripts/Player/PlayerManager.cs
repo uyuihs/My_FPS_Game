@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour
     public bool isPerformingActions;
     public bool isPerformingQuickTurn;
     public bool disableRootmotion;
+    public bool isAiming;
     private void Awake()
     {
         playerCamera = FindAnyObjectByType<PlayerCamera>();
@@ -29,6 +30,7 @@ public class PlayerManager : MonoBehaviour
         isPerformingActions = animator.GetBool("isPerformingActions");
         disableRootmotion = animator.GetBool("disableRootmotion");
         isPerformingQuickTurn = animator.GetBool("isPerformingQuickTurn");
+        isAiming = animator.GetBool("isAiming");
     }
 
     private void FixedUpdate()

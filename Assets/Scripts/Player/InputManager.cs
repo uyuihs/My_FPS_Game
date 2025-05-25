@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
     PlayerAnimationManager animationManager;
     PlayerManager playerManager;
     Animator animator;
-
+    PlayerUIManager playerUIManager;
 
     [Header("Player Movement")]
     public float horizontalMovementInput;
@@ -23,12 +23,15 @@ public class InputManager : MonoBehaviour
     [Header("Button Inputs")]
     public bool runInput;
     public bool quickTurnInput;
+    public bool aimingInput;
 
     private void Awake()
     {
         animationManager = GetComponent<PlayerAnimationManager>();
         playerManager = GetComponent<PlayerManager>();
         animator = GetComponent<Animator>();
+        //unique
+        playerUIManager = FindObjectOfType<PlayerUIManager>();
     }
 
     private void OnEnable()
@@ -41,7 +44,8 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerMove.Run.performed += ctx => runInput = true;
             playerControls.PlayerMove.Run.canceled += ctx => runInput = false;
             playerControls.PlayerMove.Quickturn.performed += ctx => quickTurnInput = true;
-
+            playerControls.PlayerActions.Aiming.performed += ctx => aimingInput = true;
+            playerControls.PlayerActions.Aiming.canceled += ctx => aimingInput = false; 
         }
 
         playerControls.Enable();
@@ -57,6 +61,29 @@ public class InputManager : MonoBehaviour
         HandleCameraInput();
         HandleMovementInput();
         HandleQuickTurnInput();
+        HandleAimingInput();
+    }
+
+    private void HandleAimingInput()
+    {
+        if (verticalMovementInput != 0 || horizontalMovementInput != 0)
+        {
+            aimingInput = false;
+            animator.SetBool("isAiming", false);
+            playerUIManager.crossHair.SetActive(false);
+            return;
+        }
+        if (aimingInput)
+        {
+            animator.SetBool("isAiming", true);
+            playerUIManager.crossHair.SetActive(true);
+        }
+        else
+        {
+            animator.SetBool("isAiming", false);
+            playerUIManager.crossHair.SetActive(false);
+        }
+        animationManager.UpdateAimConstraints();
     }
 
     private void HandleMovementInput()

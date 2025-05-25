@@ -36,18 +36,27 @@ public class PlayerLocomotionManager : MonoBehaviour
 
     private void HandleRotation()
     {
-        targetRotation = Quaternion.Euler(0, cameraHolderTransform.eulerAngles.y, 0);
-        playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        if (inputManager.horizontalCameraInput != 0 || inputManager.verticalCameraInput != 0)
+        if (playerManager.isAiming)
         {
-            transform.rotation = playerRotation;
-        }
-
-        if (playerManager.isPerformingQuickTurn)
-        {
-            Debug.Log("QuickTurn");
+            targetRotation = Quaternion.Euler(0, cameraHolderTransform.eulerAngles.y, 0);
             playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
             transform.rotation = playerRotation;
+        }
+        else
+        {
+            targetRotation = Quaternion.Euler(0, cameraHolderTransform.eulerAngles.y, 0);
+            playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            if (inputManager.horizontalCameraInput != 0 || inputManager.verticalCameraInput != 0)
+            {
+                transform.rotation = playerRotation;
+            }
+
+            if (playerManager.isPerformingQuickTurn)
+            {
+                Debug.Log("QuickTurn");
+                playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                transform.rotation = playerRotation;
+            }
         }
     }
 }
