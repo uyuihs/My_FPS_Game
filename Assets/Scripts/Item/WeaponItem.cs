@@ -8,4 +8,6 @@ public class WeaponItem : Item
     [Header("Animator Controller")]
     public AnimatorOverrideController weaponAnimator;
 
+    public bool needIK = false;
+
 }

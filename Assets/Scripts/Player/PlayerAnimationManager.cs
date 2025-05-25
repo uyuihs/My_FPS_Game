@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class PlayerAnimationManager : MonoBehaviour
 {
     public Animator animator;
     PlayerLocomotionManager playerLocomotionManager;
     PlayerManager playerManager;
+    RigBuilder rigBuilder;
+    public TwoBoneIKConstraint rightHandIK;
+    public TwoBoneIKConstraint leftHandIK;
     
     private int xMovHash;
     private int zMovHash;
@@ -53,6 +57,12 @@ public class PlayerAnimationManager : MonoBehaviour
         animator.CrossFade(targetAnimation, 0.2f);
     }
 
+    public void AssignHandIK(RightHandTargetIK rightIK, LeftHandTargetIK leftIK)
+    {
+        rightHandIK.data.target = rightIK.transform;
+        leftHandIK.data.target = leftIK.transform;
+        rigBuilder.Build();
+    }
     private void OnAnimatorMove()
     {
         if (playerManager.disableRootmotion) { return; }
