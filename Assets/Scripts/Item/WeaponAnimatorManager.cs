@@ -21,7 +21,7 @@ public class WeaponAnimatorManager : MonoBehaviour
     public void ShootWeapon(PlayerCamera playerCamera)
     {
         //播放武器的动画
-        weaponAnimator.Play("Fire");
+        // weaponAnimator.Play("Fire");
 
         //特效
         GameObject muzzleFlash = Instantiate(weaponMuzzleFlashFX, weaponMuzzleFlashTransform);

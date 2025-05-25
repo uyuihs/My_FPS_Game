@@ -264,6 +264,67 @@ MonoBehaviour:
     m_HintWeight: 1
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
+--- !u!1001 &96569052
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7832964226608476197, guid: 8bcaa2b1b752f864da9f0cc9460cd027, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4aa76615eea729acaa138f3ac2d29869, type: 2}
+    - target: {fileID: 7918241030158159629, guid: 8bcaa2b1b752f864da9f0cc9460cd027, type: 3}
+      propertyPath: m_Name
+      value: Zombie_Footballer_Male_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920328996335561009, guid: 8bcaa2b1b752f864da9f0cc9460cd027, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920328996335561009, guid: 8bcaa2b1b752f864da9f0cc9460cd027, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920328996335561009, guid: 8bcaa2b1b752f864da9f0cc9460cd027, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920328996335561009, guid: 8bcaa2b1b752f864da9f0cc9460cd027, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920328996335561009, guid: 8bcaa2b1b752f864da9f0cc9460cd027, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920328996335561009, guid: 8bcaa2b1b752f864da9f0cc9460cd027, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920328996335561009, guid: 8bcaa2b1b752f864da9f0cc9460cd027, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920328996335561009, guid: 8bcaa2b1b752f864da9f0cc9460cd027, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920328996335561009, guid: 8bcaa2b1b752f864da9f0cc9460cd027, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920328996335561009, guid: 8bcaa2b1b752f864da9f0cc9460cd027, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920328996335561009, guid: 8bcaa2b1b752f864da9f0cc9460cd027, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8bcaa2b1b752f864da9f0cc9460cd027, type: 3}
 --- !u!1 &103571505
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: e410229b515e2a8a8959600c2074e208, type: 2}
+  weaponAnimatorManager: {fileID: 0}
 --- !u!114 &452414839
 MonoBehaviour:
   m_ObjectHideFlags: 0
