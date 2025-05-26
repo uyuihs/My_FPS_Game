@@ -64,7 +64,7 @@ public class InputManager : MonoBehaviour
         HandleCameraInput();
         HandleMovementInput();
         HandleQuickTurnInput();
-        HandleAimingInput();
+        //HandleAimingInput();
         HandleShootingInput();
     }
 
@@ -87,7 +87,7 @@ public class InputManager : MonoBehaviour
             animator.SetBool("isAiming", false);
             playerUIManager.crossHair.SetActive(false);
         }
-        animationManager.UpdateAimConstraints();
+        //animationManager.UpdateAimConstraints();
     }
 
     private void HandleMovementInput()

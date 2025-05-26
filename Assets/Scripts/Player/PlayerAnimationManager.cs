@@ -48,7 +48,11 @@ public class PlayerAnimationManager : MonoBehaviour
         else if (zMov < 0) { zMov = -1; }
         else { zMov = 0; }
 
-        if (isRunning && zMov > 0) { zMov = 2; }
+        if (isRunning && zMov > 0)
+        {
+            zMov = 2;
+            xMov = 0;
+        }
 
         animator.SetFloat(xMovHash, xMov, 0.1f, Time.deltaTime);
         animator.SetFloat(zMovHash, zMov, 0.1f, Time.deltaTime);

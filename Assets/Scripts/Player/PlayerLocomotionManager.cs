@@ -36,14 +36,14 @@ public class PlayerLocomotionManager : MonoBehaviour
 
     private void HandleRotation()
     {
-        if (playerManager.isAiming)
-        {
-            targetRotation = Quaternion.Euler(0, cameraHolderTransform.eulerAngles.y, 0);
-            playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            transform.rotation = playerRotation;
-        }
-        else
-        {
+        // if (playerManager.isAiming)
+        // {
+        //     targetRotation = Quaternion.Euler(0, cameraHolderTransform.eulerAngles.y, 0);
+        //     playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        //     transform.rotation = playerRotation;
+        // }
+        // else
+        // {
             targetRotation = Quaternion.Euler(0, cameraHolderTransform.eulerAngles.y, 0);
             playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
             if (inputManager.horizontalCameraInput != 0 || inputManager.verticalCameraInput != 0)
@@ -57,6 +57,6 @@ public class PlayerLocomotionManager : MonoBehaviour
                 playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
                 transform.rotation = playerRotation;
             }
-        }
+        // }
     }
 }

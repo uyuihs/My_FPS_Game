@@ -23,6 +23,7 @@ public class PlayerManager : MonoBehaviour
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         animator = GetComponent<Animator>();
         playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
