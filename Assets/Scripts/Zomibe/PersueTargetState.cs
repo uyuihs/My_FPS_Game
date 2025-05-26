@@ -32,11 +32,15 @@ public class PersueTargetState : State
     }
 
     private void RotateTowardsTarget(ZombieManager zombieManager)
-    {   
-        zombieManager.zombieNevmeshAgent.enabled = true;
-        zombieManager.zombieNevmeshAgent.SetDestination(zombieManager.currentTarget.transform.position);
-        zombieManager.transform.rotation = Quaternion.Slerp(zombieManager.transform.rotation,
-            zombieManager.zombieNevmeshAgent.transform.rotation,
-            zombieManager.zombieRotationSpeed / Time.deltaTime);
+    {
+        // zombieManager.zombieNevmeshAgent.enabled = true;
+        // zombieManager.zombieNevmeshAgent.SetDestination(zombieManager.currentTarget.transform.position);
+        // zombieManager.transform.rotation = Quaternion.Slerp(zombieManager.transform.rotation,
+        //     zombieManager.zombieNevmeshAgent.transform.rotation,
+        //     zombieManager.zombieRotationSpeed / Time.deltaTime);
+        
+        Vector3 targetDirection = zombieManager.currentTarget.transform.position - transform.position;
+        zombieManager.transform.rotation = Quaternion.LookRotation(targetDirection);
+
     }
 }
